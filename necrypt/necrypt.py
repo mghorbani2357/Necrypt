@@ -2,6 +2,7 @@ from base64 import b64encode, b64decode
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import AES
 from Crypto.Cipher import PKCS1_OAEP
+from Crypto.Hash import SHA256
 import hashlib
 from Crypto import Random
 
@@ -44,11 +45,11 @@ class Necrypt:
         aes_cipher = AES.new(self._aes_key, AES.MODE_CBC, iv)
         return b64decode(un_pad(aes_cipher.decrypt(rsa_decrypted_b64decoded_cipher[BLOCK_SIZE:]))).decode('utf8')
 
-    def sign(self):
-        pass
+    def sign(self, plain):
+        return pkcs1_15.new(self._rsa_key).sign(SHA256.new(plain))
 
-    def verify(self):
-        pass
+    def verify(self, plain, signature):
+        return pkcs1_15.new(self._rsa_key).verify(SHA256.new(plain), signature)
 
     def get_finger_print(self):
         pass
