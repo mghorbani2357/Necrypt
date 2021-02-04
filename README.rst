@@ -15,4 +15,4 @@ Installation
 
 .. code-block:: bash
 
-    pip install Function-Limiter
+    pip install necrypt
