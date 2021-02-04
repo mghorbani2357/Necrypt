@@ -5,20 +5,26 @@ from Crypto.Cipher import PKCS1_OAEP
 from Crypto.Hash import SHA256
 import hashlib
 from Crypto import Random
+from Crypto.Signature import pkcs1_15
 
 BLOCK_SIZE = 16
 
 
-def pad(size):
-    return size + (BLOCK_SIZE - len(size) % BLOCK_SIZE) * chr(BLOCK_SIZE - len(size) % BLOCK_SIZE)
+def pad(data):
+    return data + (BLOCK_SIZE - len(data) % BLOCK_SIZE) * chr(BLOCK_SIZE - len(data) % BLOCK_SIZE)
 
 
-def un_pad(size):
-    return size[:-ord(size[len(size) - 1:])]
+def un_pad(data):
+    return data[:-ord(data[len(data) - 1:])]
 
 
 class Necrypt:
     def __init__(self, rsa_key_size=2048, aes_key=''):
+        """
+            Args:
+                rsa_key_size (int): size of the RSA key
+                aes_key (str): salt of the AES key
+        """
         self._rsa_key = RSA.generate(rsa_key_size)
         self._aes_key = hashlib.sha256(aes_key.encode()).digest()
 
@@ -46,10 +52,16 @@ class Necrypt:
         return b64decode(un_pad(aes_cipher.decrypt(rsa_decrypted_b64decoded_cipher[BLOCK_SIZE:]))).decode('utf8')
 
     def sign(self, plain):
-        return pkcs1_15.new(self._rsa_key).sign(SHA256.new(plain))
+        return pkcs1_15.new(self._rsa_key).sign(SHA256.new(plain.encode()))
 
     def verify(self, plain, signature):
-        return pkcs1_15.new(self._rsa_key).verify(SHA256.new(plain), signature)
+        return pkcs1_15.new(self._rsa_key).verify(SHA256.new(plain.encode()), signature)
 
-    def get_finger_print(self):
+    def fingerprint(self):
+        pass
+
+    def export_key(self):
+        pass
+
+    def import_key(self):
         pass

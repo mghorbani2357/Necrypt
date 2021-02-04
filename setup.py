@@ -1,5 +1,5 @@
 """
-setup.py for function_limiter
+setup.py for Necrypt
 
 """
 
