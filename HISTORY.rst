@@ -3,6 +3,11 @@
 Changelog
 =========
 
+v0.0.3
+------
+Release Date: 2021-02-04
+    * File encryption/decryption added.
+
 v0.0.2
 ------
 Release Date: 2021-02-04
