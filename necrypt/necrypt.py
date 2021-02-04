@@ -57,6 +57,22 @@ class Necrypt:
     def verify(self, plain, signature):
         return pkcs1_15.new(self._rsa_key).verify(SHA256.new(plain.encode()), signature)
 
+    def encrypt_file(self, input_file_path, output_file_path):
+        with open(input_file_path, 'rb') as input_file:
+            file_data = input_file.read()
+
+        plain = pad(b64encode(file_data).decode())
+        iv = Random.new().read(AES.block_size)
+        aes_cipher = AES.new(self.aes_key, AES.MODE_CBC, iv)
+        aes_b64encoded_cipher = b64encode(iv + aes_cipher.encrypt(plain.encode()))
+        rsa_cipher = PKCS1_OAEP.new(self._rsa_key)
+
+        with open(output_file_path, 'wb') as output_file:
+            output_file.write(rsa_cipher.encrypt(aes_b64encoded_cipher))
+
+    def decrypt_file(self, input_file, out_put_file):
+        pass
+
     def fingerprint(self):
         pass
 
