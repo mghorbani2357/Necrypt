@@ -1,5 +1,6 @@
 from unittest import TestCase
 from necrypt.necrypt import Necrypt
+import os
 
 
 class TestNecrypt(TestCase):
@@ -24,3 +25,23 @@ class TestNecrypt(TestCase):
 
         self.assertEqual('Invalid signature', str(context.exception))
 
+    def test_file_encryption_decryption(self):
+        plain_file_data = b'plain'
+        with open('plain_file', 'wb') as plain_file:
+            plain_file.write(plain_file_data)
+
+        n = Necrypt(1024)
+
+        n.encrypt_file('plain_file', 'cipher_file')
+
+        n.decrypt_file('cipher_file', 'decrypted_file')
+
+        with open('decrypted_file') as decrypted_file:
+            decrypted_file_data = decrypted_file.read()
+
+        files_to_remove = ['plain_file', 'cipher_file', 'decrypted_file']
+        for filename in files_to_remove:
+            if os.path.isfile(filename):
+                os.remove(filename)
+
+        self.assertEquals(plain_file_data, decrypted_file_data.encode())
