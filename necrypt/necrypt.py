@@ -66,12 +66,19 @@ class Necrypt:
         aes_cipher = AES.new(self.aes_key, AES.MODE_CBC, iv)
         aes_b64encoded_cipher = b64encode(iv + aes_cipher.encrypt(plain.encode()))
         rsa_cipher = PKCS1_OAEP.new(self._rsa_key)
-
         with open(output_file_path, 'wb') as output_file:
             output_file.write(rsa_cipher.encrypt(aes_b64encoded_cipher))
 
-    def decrypt_file(self, input_file, out_put_file):
-        pass
+    def decrypt_file(self, input_file_path, output_file_path):
+        with open(input_file_path, 'rb') as input_file:
+            file_data = input_file.read()
+        rsa_cipher = PKCS1_OAEP.new(self._rsa_key)
+        rsa_decrypted_b64decoded_cipher = b64decode(rsa_cipher.decrypt(file_data))
+        iv = rsa_decrypted_b64decoded_cipher[:BLOCK_SIZE]
+        aes_cipher = AES.new(self._aes_key, AES.MODE_CBC, iv)
+
+        with open(output_file_path, 'wb') as output_file:
+            output_file.write(b64decode(un_pad(aes_cipher.decrypt(rsa_decrypted_b64decoded_cipher[BLOCK_SIZE:]))))
 
     def fingerprint(self):
         pass
