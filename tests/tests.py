@@ -45,3 +45,12 @@ class TestNecrypt(TestCase):
                 os.remove(filename)
 
         self.assertEquals(plain_file_data, decrypted_file_data.encode())
+
+    def test_import_export_key(self):
+        n = Necrypt(1024)
+
+        n.export_key('key_file')
+
+        n.import_key('key_file')
+
+        print(n.decrypt(n.encrypt('s')))
