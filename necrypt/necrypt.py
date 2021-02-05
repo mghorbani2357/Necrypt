@@ -36,6 +36,14 @@ class Necrypt:
     def aes_key(self, aes_key):
         self._aes_key = hashlib.sha256(aes_key.encode()).digest()
 
+    @property
+    def rsa_key(self):
+        return self.rsa_key
+
+    @rsa_key.setter
+    def rsa_key(self, rsa_key):
+        self._rsa_key = rsa_key
+
     def encrypt(self, plain):
         plain = pad(b64encode(plain.encode()).decode())
         iv = Random.new().read(AES.block_size)
@@ -80,11 +88,20 @@ class Necrypt:
         with open(output_file_path, 'wb') as output_file:
             output_file.write(b64decode(un_pad(aes_cipher.decrypt(rsa_decrypted_b64decoded_cipher[BLOCK_SIZE:]))))
 
+    def export_key(self, key_file_path):
+        with open(key_file_path, 'wb') as key_file:
+            rsa_key = pad(self._rsa_key.export_key('PEM').decode()).encode()
+            iv = Random.new().read(AES.block_size)
+            aes_cipher = AES.new(self.aes_key, AES.MODE_CBC, iv)
+            key_file.write(iv + aes_cipher.encrypt(rsa_key))
+
+    def import_key(self, key_file_path, aes_key=''):
+        self._aes_key = hashlib.sha256(aes_key.encode()).digest()
+        with open(key_file_path, 'rb') as key_file:
+            key = key_file.read()
+            iv = key[:BLOCK_SIZE]
+            aes_cipher = AES.new(self._aes_key, AES.MODE_CBC, iv)
+            self._rsa_key = RSA.import_key(un_pad(aes_cipher.decrypt(key[BLOCK_SIZE:])))
+
     def fingerprint(self):
-        pass
-
-    def export_key(self):
-        pass
-
-    def import_key(self):
         pass
