@@ -4,6 +4,7 @@ import os
 
 
 class TestNecrypt(TestCase):
+    # Todo: * Implement Suitcase and Integration test.
     def test_unique_encryption(self):
         n = Necrypt(1024)
         plain = 'Text'

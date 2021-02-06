@@ -19,6 +19,10 @@ def un_pad(data):
 
 
 class Necrypt:
+    # Todo: * Encrypt/Decryption on huge size of plain
+    #       * Bench test on encryption/decryption
+    #       * Write useful docstring
+    #       * Update README.rst
     def __init__(self, rsa_key_size=2048, aes_key=''):
         """
             Args:
