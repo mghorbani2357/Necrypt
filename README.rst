@@ -19,15 +19,16 @@
     :target: https://pypi.python.org/pypi/Necrypt
     :alt: PyPI
     
-.. |wheel| image:: https://img.shields.io/pypi/format/Necrypt
+.. |format| image:: https://img.shields.io/pypi/format/Necrypt
     :target: https://pypi.python.org/pypi/Necrypt
     :alt: PyPI - Format
+
 
 *******
 Necrypt
 *******
 
-|license| |quality| |downloadrate| |downloads| |pypiversion| |wheel| |wheel|
+|license| |quality| |downloadrate| |downloads| |pypiversion| |format| |wheel|
 
 Necrypt provides method which generate new cipher for each encryption.
 
