@@ -8,14 +8,14 @@
 .. |downloadrate| image:: https://img.shields.io/pypi/dm/Necrypt   
     :alt: PyPI - Downloads
     
-.. |dwonloads| image:: https://static.pepy.tech/personalized-badge/necrypt?period=total&units=international_system&left_color=grey&right_color=blue&left_text=Downloads
+.. |downloads| image:: https://static.pepy.tech/personalized-badge/necrypt?period=total&units=international_system&left_color=grey&right_color=blue&left_text=Downloads
  :target: https://pepy.tech/project/necrypt
     
 .. |wheel| image:: https://img.shields.io/pypi/wheel/Necrypt  
     :target: https://pypi.python.org/pypi/Necrypt
     :alt: PyPI - Wheel
     
-.. |pypiversion| image:: https://img.shields.io/pypi/v/Necrypt  
+.. |pypiversion| image:: https://img.shields.io/pypi/v/Necrypt
     :target: https://pypi.python.org/pypi/Necrypt
     :alt: PyPI
     
