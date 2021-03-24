@@ -20,7 +20,6 @@ def un_pad(data):
 
 class Necrypt:
     # Todo: * Encrypt/Decryption on huge size of plain
-    #       * Bench test on encryption/decryption
     #       * Write useful docstring
     #       * Update README.rst
     def __init__(self, rsa_key_size=2048, aes_key=''):
@@ -107,5 +106,3 @@ class Necrypt:
             aes_cipher = AES.new(self._aes_key, AES.MODE_CBC, iv)
             self._rsa_key = RSA.import_key(un_pad(aes_cipher.decrypt(key[BLOCK_SIZE:])))
 
-    def fingerprint(self):
-        pass

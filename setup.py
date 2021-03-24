@@ -1,7 +1,4 @@
-"""
-setup.py for Necrypt
-
-"""
+"""setup.py for Necrypt"""
 
 __author__ = "Mohsen Ghorbani"
 __email__ = "m.ghorbani2357@gmail.com"

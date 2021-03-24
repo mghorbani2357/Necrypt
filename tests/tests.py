@@ -1,10 +1,10 @@
 from unittest import TestCase
-from necrypt.necrypt import Necrypt
+from necrypt import Necrypt
 import os
 
 
 class TestNecrypt(TestCase):
-    # Todo: * Implement Suitcase and Integration test.
+
     def test_unique_encryption(self):
         n = Necrypt(1024)
         plain = 'Text'
@@ -45,13 +45,19 @@ class TestNecrypt(TestCase):
             if os.path.isfile(filename):
                 os.remove(filename)
 
-        self.assertEquals(plain_file_data, decrypted_file_data.encode())
+        self.assertEqual(plain_file_data, decrypted_file_data.encode())
 
     def test_import_export_key(self):
         n = Necrypt(1024)
+
+        plain = 'plain'
+
+        cipher = n.encrypt(plain)
 
         n.export_key('key_file')
 
         n.import_key('key_file')
 
-        print(n.decrypt(n.encrypt('s')))
+        decrypted_cipher = n.decrypt(cipher)
+
+        self.assertEqual(plain, decrypted_cipher)

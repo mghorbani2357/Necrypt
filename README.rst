@@ -24,11 +24,14 @@
     :alt: PyPI - Format
 
 
+.. |coverage| image:: https://app.codacy.com/project/badge/Coverage/c94ddbddfcf74ac395b1648c7490a97c
+    :target: https://www.codacy.com/gh/mghorbani2357/Necrypt/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mghorbani2357/Necrypt&amp;utm_campaign=Badge_Coverage
+
 *******
 Necrypt
 *******
 
-|license| |quality| |downloadrate| |downloads| |pypiversion| |format| |wheel|
+|license| |quality| |coverage| |downloadrate| |downloads| |pypiversion| |format| |wheel|
 
 Necrypt provides method which generate new cipher for each encryption.
 
