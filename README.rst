@@ -6,6 +6,7 @@
     :target: https://www.codacy.com/gh/mghorbani2357/Necrypt/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mghorbani2357/Necrypt&amp;utm_campaign=Badge_Grade
     
 .. |downloadrate| image:: https://img.shields.io/pypi/dm/Necrypt   
+    :target: https://pypistats.org/packages/necrypt
     :alt: PyPI - Downloads
     
 .. |downloads| image:: https://static.pepy.tech/personalized-badge/necrypt?period=total&units=international_system&left_color=grey&right_color=blue&left_text=Downloads
